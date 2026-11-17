@@ -1,0 +1,13 @@
+base: skill-overrides-base.yaml
+slug: fullsend-ai-skill-overrides
+trigger: |
+  event.entity.kind == "work_item"
+  && event.transition.kind == "label_changed"
+  && event.transition.label.name == "ready-for-skill-overrides"
+allowed_remote_resources:
+  - https://github.com/fullsend-ai/agents/
+  - https://raw.githubusercontent.com/fullsend-ai/agents/
+skills:
+  - skills/pr-review:
+      sub-agents/user-experience.md: null
+      sub-agents/rbac-review.md: personas/rbac-review.md
