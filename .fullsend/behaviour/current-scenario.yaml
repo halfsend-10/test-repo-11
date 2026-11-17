@@ -1,0 +1,24 @@
+ops:
+    - description: See user-experience.md recorded as removed
+      op: assert_jq
+      args: .fullsend/personas.json, any(.removed[]; .skill == "pr-review" and .path == "sub-agents/user-experience.md")
+    - description: See no persona named user-experience
+      op: assert_jq
+      args: .fullsend/personas.json, all(.personas[]; .name != "user-experience")
+    - description: See security staged from the override
+      op: assert_jq
+      args: .fullsend/personas.json, any(.personas[]; .skill == "pr-review" and .name == "security" and .path == "sub-agents/security.md" and .origin == "override")
+    - description: See security carry the override's bytes
+      op: assert_jq
+      args: .fullsend/personas.json, any(.personas[]; .skill == "pr-review" and .name == "security" and .sha256 == "93fa30d04fde0af9e96e115e5fcb27d3223ebfb9d456b87ad5638dba67e6e84f")
+    - description: See rbac-review added from the user's file
+      op: assert_jq
+      args: .fullsend/personas.json, any(.personas[]; .skill == "pr-review" and .name == "rbac-review" and .path == "sub-agents/rbac-review.md" and .origin == "added")
+    - description: See correctness staged from upstream
+      op: assert_jq
+      args: .fullsend/personas.json, any(.personas[]; .skill == "pr-review" and .name == "correctness" and .path == "sub-agents/correctness.md" and .origin == "upstream")
+    - description: Emit result
+      op: write_fixture
+      args: output/agent-result.json, fixtures/dispatch/ok.json
+      content: |
+        {"status":"ok","source":"harness-dispatch-behaviour-test"}
