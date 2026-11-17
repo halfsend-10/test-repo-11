@@ -21,6 +21,8 @@ roles:
 agents:
     - name: skill-overrides-base
       source: harness/skill-overrides-base.yaml
+    - name: skill-overrides
+      source: harness/skill-overrides.yaml
 allowed_remote_resources:
     - https://raw.githubusercontent.com/fullsend-ai/fullsend/
     - https://raw.githubusercontent.com/fullsend-ai/agents/
