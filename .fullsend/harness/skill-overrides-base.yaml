@@ -1,0 +1,12 @@
+agent: agents/skill-overrides.md
+role: triage
+slug: fullsend-ai-skill-overrides-base
+model: opus
+image: ghcr.io/fullsend-ai/fullsend-sandbox:latest
+policy: policies/base.yaml
+allowed_remote_resources:
+  - https://github.com/fullsend-ai/agents/
+  - https://raw.githubusercontent.com/fullsend-ai/agents/
+skills:
+  - https://github.com/fullsend-ai/agents/tree/4a6645268c6c8063c15ce5cb1b88a4f3930c74da/skills/pr-review#sha256=d0a639e6870c3e204db83855cdf1e4e10e6eb3ecfaee1695bbf8630843cb5c6c:
+      sub-agents/security.md: https://raw.githubusercontent.com/fullsend-ai/agents/cc64bb29346c43822ad5d9fd14351c7d98d642ca/skills/pr-review/sub-agents/security.md#sha256=93fa30d04fde0af9e96e115e5fcb27d3223ebfb9d456b87ad5638dba67e6e84f
